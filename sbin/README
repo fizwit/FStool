@@ -1,0 +1,44 @@
+file: /data/fstool/sbin/README
+host: ryzabbix
+
+FStool 2014
+
+The FStool process  used to be automated when I was only monitroing a single site.  The multi site
+code is mostly finished by justs a few days to fix.  I only get asked a few time a year so I have not been 
+under presure to fix this.  
+
+Data collection is automated and happends twice a week for CTC
+
+A whole seperate process is used to collect GPFS usage reports ( I think that is automated )
+
+Steps for loading CTC-B Data from FStool Sources
+- cd /data/fstool/sbin
+- check that new data files have been generated.  Data collection happens twice a week.
+  Data files are kept by site at /data/fstool/fsdata/CTC-B
+  ls -l ../fsdata/CTC-B
+./FSbatch.sh   
+#FSbatch.sh is wrapper script for FSbatch.pl which creates the shell script -> fsload.sh
+# fsload.sh imports CSV files from ../fsdata/CTC-B in MySQL; catess indexes; creates reports
+# The whole fsload.sh script cotains the commands for all of CTC-B and can take 12 hours to complete.
+# copy fsload to home.sh;  Edit home.sh so only home directories are loaded and reported on.
+
+# Example of home.sh
+# home
+(/data/fstool/sbin/update.pl --load CTC-B home.csv CTCB_home > $LogDir/home.log ;\
+ /data/fstool/sbin/update.pl --index CTC-B home.csv CTCB_home >> $LogDir/home.log ;\
+ /data/fstool/sbin/fsreport.pl CTC-B home >> $LogDir/home.log ;\
+    /data/fstool/sbin/fsdetail.pl CTC-B home >> $LogDir/home.log ;\
+)
+
+./PurgeOld.pl   # removes older versions of MYSQL tables
+./home.sh  # Will load and report on CTC-B home dirs 
+
+fsload.sh can fail if old tables are not purged: PurgeOld.pl will clean up old tables.
+
+ISSUES
+  - fsload.sh creates to many subprocesses; need a stack to manage X processes at a time
+  - fsload.sh starts many subprocesses so the log files are out of order; maybe should create a log for each 
+    subprocess ? 
+
+UID Table can be updated with update_uid.pl  # Dec 2015 John Dey
+  - this new version of update_uid uses the HPC LDAP

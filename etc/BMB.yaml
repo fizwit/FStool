@@ -1,0 +1,26 @@
+# FileSystems.yaml
+#
+# YAML descp of file systems to be monitored
+#
+#Array or Group or Major division ) is TOP a good name?  L1
+#  +Project                                              L2
+#     +Volume Name  (unique and MYSQL safe)
+#         -Volume Specifications
+#
+---
+bmhome      :
+  descp     : Boston User Home
+  path      : /SFS/user/bm
+  source    : /gridnas/user_shares/FS-bm1-ddn1-1-rep/bmhome
+  fname     : bmhome
+  array     : usbmgpfs
+  owner     : Boston Users
+  report    : fastdu
+bmproject   :
+  descp     : Boston Projects
+  path      : /SFS/bm/project
+  source    : /gridnas/user_shares/FS-bm1-ddn1-1-rep/bmproject
+  fname     : bmproject
+  array     : usbmgpfs
+  owner     : Boston Users
+  report    : fastdu

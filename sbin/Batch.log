@@ -1,0 +1,11 @@
+2015.10.05T16:21 script:fastdu.bash, state=start
+2015.10.05T16:21, script:fastdu.pl, site=WPP, vol:acsm_home
+2015.10.05T16:21, script:fastdu.pl, site=WPP, vol:imaging
+2015.10.05T16:21, script:fastdu.pl, site=WPP, vol:miscShares
+2015.10.05T16:21, script:fastdu.pl, site=WPP, vol:safty
+2015.10.05T16:21, script:fastdu.pl, site=WPP, vol:wphome
+2015.10.05T16:21, script:fastdu.pl, site=WPP, vol:wpproject
+2015.10.05T16:21, script:fastdu.pl, site=RYN, vol:ryhome
+2015.10.05T16:21, script:fastdu.pl, site=RYN, vol:ryproject
+2015.10.05T16:21, script:fastdu.pl, site=KEN, vol:kwhome
+2015.10.05T16:21, script:fastdu.pl, site=KEN, vol:kwproject

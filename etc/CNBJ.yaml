@@ -1,0 +1,59 @@
+# FileSystems.yaml
+#
+# YAML descp of file systems to be monitored
+#
+#Format
+#Volume Name: 
+#  volume attributes
+#  descp
+#  source
+#  path
+#  fname
+#  array
+#  owner
+#  detail
+# 
+#  Path - Mounted path that users see.
+#  source - path that was used to collect data from. There are two ways to speicify path with fstool.
+# this is due to NFS overmounts.  /SFS/project is a volume but there are multible volumes mounted over it.
+# In order to perform a volume report that only shows /SFS/project files a seperate NFS mount needs to be
+# made on a data collection system. The result is that path information does not match the actual path
+# that users see. 
+#
+# detail reports path is appended to 'source' path to generate report. detail path is appended to 'path'
+# when used for display purposes. Detail path of '/' (root) will give a directory level report at the root
+# of the volume.
+#
+---
+project :
+  descp   : Project Storage
+  source  : /SFS/project
+  path    : /SFS/project
+  table   : CNBJ_project
+  fname   : project.csv
+  detail  :
+    - {name : genetics, descp : Genetics Projects, path : /genetics }
+    - {name : genomics, descp : Genomics Projects, path : /genomics }
+    - {name : ia,  descp : IA,  path : /ia }
+    - {name : QAP, descp : QAP, path : /QAP }
+  array   : NetApp 
+  owner   : Ron Chen 
+  background : yes
+scratch :
+  descp   : Operational Job Storage
+  path    : /SFS/scratch
+  source  : /SFS/scratch
+  fname   : scratch.csv
+  array   : NetApp 
+  table   : CNBJ_scratch
+  owner   : Shared
+home :
+  descp  : User Home Directory 
+  path    : /SFS/user/ubp
+  source  : /SFS/user/ubp
+  fname   : home.csv
+  table   : CNBJ_home
+  detail  : 
+    - {name : home, descp : User Directories, path : / }
+  array   : NetApp 
+  owner   : Shared (this means you) 

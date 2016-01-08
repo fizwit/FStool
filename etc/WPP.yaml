@@ -1,0 +1,61 @@
+# FileSystems.yaml
+#
+# YAML descp of file systems to be monitored
+#
+#Site (or major division )
+#  +Project
+#    +Volume Name  (unique and MYSQL safe)
+#        +Volume Specifications
+#        path   : actual path of walked file system 
+#        alias  : Alternate name of 'path', Used in reports
+#        detail : specify sub dir to create 'directory' level reports 
+#
+---
+imaging  :
+  descp  : WPP Imaging Shares
+  path   : /imaging_shares
+  source : /gridnas/imaging_shares
+  array  : uswpp_gridnas 
+  fname  : imaging
+  report : fastdu
+  owner  : WPP Imaging
+acsm_home:
+  descp  : WPP ACSM Home
+  path   : /acsm
+  source : /gridnas/acsm_shares/acsm-home
+  array  : uswpp_gridnas 
+  fname  : acsm_home 
+  report : fastdu
+  owner  : WPP ACSM 
+safty       :
+  descp  : WPP Safety
+  path   : /DART
+  source : /gridnas/safety_shares/DART
+  array  : uswpp_gridnas 
+  fname  : safty 
+  report : fastdu
+  owner  : WPP Safty 
+miscShares :
+  descp  : WPP Unclassified Shares
+  path   : /misc_shares
+  source : /gridnas/misc_shares
+  array  : uswpp_gridnas 
+  fname  : miscShares 
+  report : fastdu
+  owner  : WPP General 
+wphome   :
+  descp  : WPP User Home 
+  path   : /SFS/user/wp
+  source : /gridnas/gsc_shares/FS-wp1-ddn1-1-repl/wphome-ddn
+  array  : uswpp_gridnas 
+  fname  : wphome 
+  report : fastdu
+  owner  : WPP Users 
+wpproject :
+  descp    : WPP Project folder 
+  path     : /SFS/project/wp
+  source   : /gridnas/gsc_shares/FS-wp1-ddn1-2-repl/wpproject-ddn
+  array    : uswpp_gridnas 
+  fname    : wpproject
+  report   : fastdu
+  owner    : WPP Users 

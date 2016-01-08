@@ -1,0 +1,96 @@
+# FileSystems.yaml
+#
+# YAML descp of file systems to be monitored
+#
+#Format
+#Volume Name: 
+#  volume attributes
+#  descp
+#  source
+#  path
+#  fname
+#  array
+#  owner
+#  detail
+# 
+#  Path - Mounted path that users see.
+#  source - path that was used to collect data from. There are two ways to speicify path with fstool.
+# this is due to NFS overmounts.  /SFS/project is a volume but there are multible volumes mounted over it.
+# In order to perform a volume report that only shows /SFS/project files a seperate NFS mount needs to be
+# made on a data collection system. The result is that path information does not match the actual path
+# that users see. 
+#
+# detail reports path is appended to 'source' path to generate report. detail path is appended to 'path'
+# when used for display purposes. Detail path of '/' (root) will give a directory level report at the root
+# of the volume.
+#
+---
+project :
+  descp   : Project Storage
+  source  : /fstool/project
+  path    : /SFS/project
+  table   : CTCB_project
+  fname   : project.csv
+  detail  :
+    - {name : genetics, descp : Genetics Projects, path : /genetics/projects }
+    - {name : genomics, descp : Genomics Projects, path : /genomics/Projects }
+    - {name : gentool,  descp : Genomics Tools ,   path : /genomics/tools }
+    - {name : omicsProj, descp : Genome Projects,  path : /genomics/genome/Projects }
+    - {name : osd,      descp : OSD Projects,      path : /genomics/osd/Projects }
+  array   : ctcIsilon2
+  owner   : Jason Huges
+  background : yes
+SRS       : 
+  descp   : Sequence Retrival System 
+  source  : /SFS/SRS
+  path    : /SFS/SRS
+  array   : sc29
+  fname   : SRS.csv
+  table   : CTCB_SRS
+  detail  :
+    - {name : SRS, descp : SRS Directories, path : / }
+  owner   : Guochun Xie 
+mpData :
+  descp   : Molecular Profile Data
+  path    : /SFS/project/mpData
+  source  : /SFS/mounts/isilon/project/mpData
+  table   : CTCB_mpData
+  fname   : mpData.csv
+  detail  : 
+    - {name : mpData, descp : MP Projects, path : / }
+  array   : sc27
+  owner   : Blake Dubois
+scratch :
+  descp   : Operational Job Storage
+  path    : /SFS/scratch
+  source  : /SFS/scratch
+  fname   : scratch.csv
+  array   : sc29
+  table   : CTCB_scratch
+  owner   : Shared
+omicsoft  :
+  descp   : Omic Software Project 
+  path    : /SFS/project/omicsoft
+  source  : /fstool/omicsoft
+  table   : CTCB_omicsoft
+  fname   : omicsoft.csv
+  array   : sc27 
+  owner   : Omic Soft 
+home :
+  descp  : User Home Directory 
+  path    : /SFS/user/ctc
+  source  : /SFS/user/ctc
+  fname   : home.csv
+  table   : CTCB_home
+  detail  : 
+    - {name : home, descp : User Directories, path : / }
+  array   : NetApp23 
+  owner   : Shared (this means you) 
+data1    :
+  descp  : Archive stuff 
+  path    : /SFS/archive/data1
+  source  : /SFS/archive/data1
+  table   : CTCB_data1
+  array   : NetApp23
+  fname   : data1.csv
+  owner   : Shared Archive 

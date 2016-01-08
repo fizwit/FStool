@@ -1,0 +1,52 @@
+#
+# FStools local configuration
+#
+---
+url     : 'http://ryzabbix.merck.com/fsdata/CTCB'
+WEBdir  : /SFS/www/fsdata
+WEBbase : /fsdata
+FSbase  : /data/fstool
+csvDir  : /data/fstool/fsdata
+logDir  : /data/fstool/log
+pwalk   : /data/fstool/bin/pwalk
+sbin    : /data/fstool/sbin
+
+# Batch Load script and Logs (FSbatch.pl)
+batch   : /data/fstool/sbin/fsload.sh
+batch-dev   : /data/fstool/sbin/fsload-dev.sh
+batchlog : fsload.log
+
+Title     : High Performance Computing (HPC) 
+SubTitle  : File System Storage Reports
+Sites     :
+  CTC-B   : Charlotte Cluster B Isilon2
+  CNBJ    : Bijing Cluster
+  BMB    : Boston GPFS Storage 
+  RYN    : Rahway GPFS Storage  
+  WPP    : West Point GPFS Storage
+  KEN    : Kenilworth GPFS Storage
+
+#
+#  MySql Connection Information
+#
+DBusername : fsuser
+DBpasswd   : mypasswd
+DBname     : fsdata
+DBhost     : localhost
+
+#
+#  Reports
+#
+CTCB_report : yes
+PieUserAmt : no
+PieUserCnt : no
+TableUID     : yes 
+TableUIDlist : yes
+TableFatCnt  : no 
+TableFatSz   : no
+TableHist    : yes
+
+KEN_Report :
+   PathList : yes
+   UIDList  : yes
+

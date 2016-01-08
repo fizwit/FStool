@@ -1,0 +1,22 @@
+#  YAML descp of file systems to be monitored
+#
+#Group
+#  +Project (or a department name, used in Web descp)
+#     +File System Name (unique and MYSQL safe)
+#         +Volume Specifications
+#
+---
+ryhome      :
+  descp     : Rahway User Home
+  path      : /SFS/user/ry
+  source    : /gridnas/user_shares/ryhome-ddn10k
+  fname     : ryhome
+  array     : usry_gridnas 
+  owner     : Rahway Users
+ryproject   :
+  descp     : Rahway Project
+  path      : /SFS/project/ry
+  source    : /gridnas/gsc_shares/ryprojects-ddn-repl-new/data
+  fname     : ryproject
+  array     : usry_gridnas 
+  owner     : Rahway Users 

@@ -1,0 +1,364 @@
+# Files newer thatn the last 7 days
+mysql> select substring(fname,1,35) as Name, count(*), sum(size) from RHY_obav_ddn10k where mtime > (unix_timestamp( now() ) - 14*24*60*60);
+
+
+select UID.uname, data091231.uid, count(*) as filecnt from data091231, UID where UID.uid = data091231.uid group by data091231.uid order by filecnt DESC;
+
+select UID.uname, user091231.uid, cnt from UID,user091231 where UID.uid = user091231.uid order by cnt;
+
+mysql> select GID.gidName, fsData.gid, count(*) as Total from fsData, GID where GID.gid = fsData.gid group by fsData.gid order by Total DESC;
++--------------+-------+----------+
+| gidName      | gid   | Total    |
++--------------+-------+----------+
+| compbio      |  1004 | 16092268 |
+| resgen       |  1909 |  7651916 |
+| molonyc      | 65003 |  1532329 |
+| NULL         |  2072 |   649586 |
+| statgen      |  1996 |   577283 |
+| clusterusers |  1900 |   320761 |
+| NULL         |  2041 |   254388 |
+| genome       |  1903 |   159814 |
+| NULL         |     0 |   116268 |
+| biology      |  1937 |    89765 |
+| NULL         |  2008 |    39231 |
+| pathways     |  1953 |    36188 |
+| admin        |   500 |    12318 |
+| NULL         |   200 |     3793 |
+| NULL         |   100 |     2328 |
+| NULL         |   101 |     1833 |
+| rgadmin      |  1927 |     1430 |
+| NULL         |    10 |     1064 |
+| NULL         |  1046 |      831 |
+| blast        |   505 |      825 |
+| molbio       |  1007 |      581 |
+| NULL         |  9129 |      531 |
+| imatics      |  1019 |      131 |
+| NULL         |     1 |      123 |
+| NULL         |  2087 |       79 |
+| NULL         |   990 |       47 |
+| gaptools     |  1960 |       43 |
+| dtap         |  1080 |       32 |
+| NULL         |  2047 |       13 |
+| jira-rpm     |   502 |        4 |
+| PGx_MK0364   |  1993 |        2 |
+| lauzier      |  9395 |        1 |
+| derti        |  9397 |        1 |
+| NULL         |  3033 |        1 |
+| NULL         |  3035 |        1 |
++--------------+-------+----------+
+
+
+mysql> select gid, count(*) as Total from fsData group by gid order by Total;
++-------+----------+
+| gid   | Total    |
++-------+----------+
+|  9395 |        1 |
+|  9397 |        1 |
+|  3033 |        1 |
+|  3035 |        1 |
+|  1993 |        2 |
+|   502 |        4 |
+|  2047 |       13 |
+|  1080 |       32 |
+|  1960 |       43 |
+|   990 |       47 |
+|  2087 |       79 |
+|     1 |      123 |
+|  1019 |      131 |
+|  9129 |      531 |
+|  1007 |      581 |
+|   505 |      825 |
+|  1046 |      831 |
+|    10 |     1064 |
+|  1927 |     1430 |
+|   101 |     1833 |
+|   100 |     2328 |
+|   200 |     3793 |
+|   500 |    12318 |
+|  1953 |    36188 |
+|  2008 |    39231 |
+|  1937 |    89765 |
+|     0 |   116268 |
+|  1903 |   159814 |
+|  2041 |   254388 |
+|  1900 |   320761 |
+|  1996 |   577283 |
+|  2072 |   649586 |
+| 65003 |  1532329 |
+|  1909 |  7651916 |
+|  1004 | 16092268 |
++-------+----------+
+35 rows in set (13.91 sec)
+
+select uid, count(*) from fsData where gid = 65003 group by uid;
++-------+----------+
+| uid   | count(*) |
++-------+----------+
+|  9264 |    29691 |
+| 65003 |  1502638 |
++-------+----------+
+ select uid, count(*) as Total from fsData where gid = 1004 group by uid order by Total;
++------+---------+
+| uid  | Total   |
++------+---------+
+|  500 |       1 |
+|  502 |       1 |
+| 9235 |       1 |
+| 9202 |       2 |
+| 9281 |       2 |
+| 9379 |       2 |
+| 9274 |       3 |
+| 9358 |       3 |
+| 9382 |      18 |
+| 9230 |      41 |
+| 2054 |      45 |
+|    0 |     242 |
+| 2085 |     271 |
+| 9392 |     287 |
+| 9209 |     614 |
+| 9294 |    1205 |
+| 9231 |    1472 |
+| 9129 |    2118 |
+| 9363 |    2184 |
+| 9259 |    4540 |
+| 9113 |    5215 |
+| 9316 |   11411 |
+| 2041 |   13450 |
+| 2008 |   27806 |
+| 9140 |   83768 |
+| 9162 |  157105 |
+| 9203 |  162582 |
+| 9292 |  202046 |
+| 9334 |  443986 |
+| 9126 |  695558 |
+| 9278 |  992396 |
+| 9126 |  695558 |
+| 9278 |  992396 |
+| 9162 |  157105 |
+| 9203 |  162582 |
+| 9292 |  202046 |
+| 9334 |  443986 |
+| 9126 |  695558 |
+| 9278 |  992396 |
+| 9203 |  162582 |
+| 9292 |  202046 |
+| 9334 |  443986 |
+| 9126 |  695558 |
+| 9278 |  992396 |
+| 9126 |  695558 |
+| 9278 |  992396 |
+| 9282 | 1713066 |
+| 9130 | 3671071 |
+| 9139 | 3732831 |
+| 2072 | 4166925 |
++------+---------+
+
+mysql> select stat, count(*) from UID group by stat;
++------+----------+
+| stat | count(*) |
++------+----------+
+|    0 |      236 |
+|    1 |      134 |
++------+----------+
+236 old accounts 134 Active accounts;
+ 
+
+select gid, substring(fname, 1,29) as Name, count(*)  from fsData where gid=2072 group by Name;
+
+mysql>  select gid, substring(fname, 1,30) as Name, count(*)  from data091209 where gid=65003 and substring(fname,1,20) = '/work/users/molonyc/' group by Name order by 3;
++-------+----------------------+----------+
+| gid   | Name                 | count(*) |
++-------+----------------------+----------+
+| 65003 | /work/users/molonyc/ |  1532325 |
++-------+----------------------+----------+
+
+# Count file extensions by Table
+select select extension, sum(size) as Sum, count(*) as Count from CTCB_mpData group by extension order by Sum DESC;
+##  Count file extensions by directory
+# list of directories
+select depth from $table where fname = \'$fname\';
+# Get list of directory names
+  select fname from $table where fname like \'$fname/%\' and depth=$depth and cnt >-1";
+  for fname
+    select fname, count(*), sum(size),mtime from $table where fname like \'$dir/%\'
+
+# 2009.12.01
+# Steps taken to create a new GID table based on /etc/group and data from fsData
+#
+ insert into GID_new (gid) select gid from fsData group by fsData.gid;
+ update GID_new,GID set GID_new.gidName=GID.gidName where  GID_new.gid = GID.gid;
+ update GID_new,GID set GID_new.stat=GID.stat where  GID_new.gid = GID.gid;
+ update GID_new set GID_new.stat=0 where GID_new.stat is NULL;
+ alter table GID_new rename to GID;
+ mysql> update UID set stat=0 where uid=3040;
+
+
+
+select Thrity, Sixty, Ninty, SixMon , OneYear, gtOneYear from (select count(*) as Thrity from data091214 where mtime > 1258931175 ) tempa, (select count(*) as Sixty  from data091214 where mtime BETWEEN 1256339175+1 and 1258931175 )  tempb, (select count(*) as Ninty  from data091214 where mtime BETWEEN 1253747175+1 and 1256339175 ) tempc, (select count(*) as SixMon from data091214 where mtime BETWEEN 1245755175+1 and 1253747175) tempd, (select count(*) as OneYear   from data091214 where mtime BETWEEN 1229987175+1  and 1245755175) tempe, (select count(*) as gtOneYear from data091214 where mtime <= 1229987175) tempf
+      < 30 Days  0              4107066 4107066
+        60 Days  1              1492515 5599581
+        90 Days  2              1427966 7027547
+       6 Months  3             21932260 28959807
+       One Year  4                    0 28959807
+     > One year  5                    1 28959808
+
+ select Thrity, Sixty, Ninty, SixMon , OneYear, gtOneYear from (select count(*) as Thrity from data091214 where ctime > 1258931175 ) tempa, (select count(*) as Sixty  from data091214 where ctime BETWEEN 1256339175+1 and 1258931175 )  tempb, (select count(*) as Ninty  from data091214 where ctime BETWEEN 1253747175+1 and 1256339175 ) tempc, (select count(*) as SixMon from data091214 where ctime BETWEEN 1245755175+1 and 1253747175) tempd, (select count(*) as OneYear   from data091214 where ctime BETWEEN 1229987175+1  and 1245755175) tempe, (select count(*) as gtOneYear from data091214 where ctime <= 1229987175) tempf
+
+mysql> select GID.gidName, data091214.gid, SUM(data091214.size) as sizeBytes from data091214, GID where GID.gid = data091214.gid group by data091214.gid order by sizeBytes DESC;
++--------------+-------+-----------------+
+| gidName      | gid   | sizeBytes       |
++--------------+-------+-----------------+
+| NULL         |    10 |     14227449666 |
+| NULL         |  9129 |     10290961880 |
+| blast        |   505 |      7457758954 |
+| genome       |  1903 |      4290079163 |
+| NULL         |  2087 |      3525159340 |
+| NULL         |   101 |      2476080795 |
+| molbio       |  1007 |      1296337405 |
+| NULL         |  2008 |      1097018035 |
+| NULL         |   200 |       906162777 |
+| lauzier      |  9395 |       126192722 |
+| NULL         |  1046 |       117768716 |
+| NULL         |   990 |        53126289 |
+| imatics      |  1019 |        23645925 |
+| jira-rpm     |   502 |         7892896 |
+| NULL         |  2047 |           42890 |
+| PGx_MK0364   |  1993 |             636 |
+| NULL         |  3035 |             623 |
+| NULL         |  3033 |             469 |
++--------------+-------+-----------------+
+35 rows in set (3 min 3.31 sec)
+
+
+ insert into GID value (gid=100, gidName='users', stat=100);
+
+# connect to mysql as root to mysql db
+# 'mysql' db has all admin info
+mysql mysql -u root -p
+
+# show priv for a user
+select * from user where user = 'deyjohn';
+
+select User, Create_priv, File_priv, Delete_priv, Host from user  where user = 'deyjohn';
++---------+-------------+-----------+-------------+-----------+
+| User    | Create_priv | File_priv | Delete_priv | Host      |
++---------+-------------+-----------+-------------+-----------+
+| deyjohn | N           | N         | N           | localhost |
+| deyjohn | Y           | Y         | Y           | %         |
++---------+-------------+-----------+-------------+-----------+
+
+delete from user where user = 'deyjohn' and Host = 'localhost';
+Query OK, 1 row affected (0.06 sec)
+:q
+
+
+
+insert into sum100213 (fname, sumsz, cnt) select fname, sum(size) as sumsz, count(*) as cnt from data100213 where substring(fname,1,30) = '/work/genomics/osd/Projects/4/' and cnt=0 group by cnt;
+
+# how to update UID
+select * from UID where uid is NULL;
+insert into UID (uid,uname, GCOS,stat) value (9413, "richstev", "Richard Stevens", 1);
+update UID set stat=1 where uid=9126;
+
+mysql> select table_name from information_schema.tables where table_schema = 'fsdata' and table_name = 'user100503';
++------------+
+| table_name |
++------------+
+| user100503 |
++------------+
+1 row in set (0.12 sec)
+mysql> show tables like 'user100503';
++-------------------------------+
+| Tables_in_fsdata (user100503) |
++-------------------------------+
+| user100503                    |
++-------------------------------+
+1 row in set (0.01 sec)
+
+mysql> show tables like 'user100411';
+Empty set (0.00 sec)
+
+select FStable, created from state where created=(select MAX(created) from state where active='yes');
+
+select fname, size from data100627 where uid=9399 and ctime < (UNIX_TIMESTAMP('2010-06-27') - (365*24*60*60));
+unix_timestamp() from_unixtime();
+# Current Time and 14 days ago
+ select now() , from_unixtime(  unix_timestamp( now() ) -  14*24*60*60);
+
+; What to the files look like that were made in the last 7 days?
+; I would also have to report modified files since these would be part of a backup
+
+;Get a UNIX time stamp 7 days in the past
+select unix_timestamp( date_sub(now(), interval 7 day) );
+select count(*), sum(size) from data100714 where ctime >  unix_timestamp( date_sub(now(), interval 7 day) );
+
+select uid, count(*), sum(size) from data100714 where ctime >  unix_timestamp( date_sub(now(), interval 7 day) ) grou by uid order by 3;
+
+set @yesterday = unix_timestamp(curdate()) - 24*60*60;
+select extension, size, count(*)  from data100714 where ctime > @yesterday or mtime > @yesterday group by extension;
+
+select count(*), size from data100714 where ctime > unix_timestamp('2010-07-14') ;
+
+
+alter table scan modify walk_end datetime default null;
+
+mysql> alter table UID add column `manager` char(30) default NULL after email;
+
+create table `newUID` (`uid` int unsigned default NULL, `uname` char(15) default NULL, `cnt` int default NULL, `size` bigint(22) default NULL );
+
+insert into newUID (uid,cnt,size) select uid, count(*), sum(size) from 100817_work_data group by uid;
+
+
+mysql> select table_name, file_cnt, (file_cnt/TIME_TO_SEC(TIMEDIFF(walk_end,walk_start))) as 'files/Sec' from scan where state='complete';
++--------------------------+----------+-----------+
+| table_name               | file_cnt | files/Sec |
++--------------------------+----------+-----------+
+| 101012_analysis_data     |  9535459 |   5236.39 |
+| 101012_Quanticon_data    |   186739 |   7469.56 |
+| 101012_Definiens_data    |   259309 |  13647.84 |
+| 101012_sarcopenia_data   |   236597 |  13917.47 |
+| 101012_inhome_data       |   249526 |  16635.07 |
+
+How to test if a table exists:
+select table_name from information_schema.tables where table_schema = 'fsdata' and table_name = '101119_analysis_data';
+OR
+show tables like '101119_analysis_data';
+
+grant select, insert,update, deete, create,drop ON junkDB.*
+TO 'deyjohn'@'localhost'
+indetifed by 'drwssap';
+grant select ON fsdata.* to 'guest'@'%' identified by 'queryonly';
+show grants
+select User from mysql.user;  # show users of MYSQL
+
+
+
+mysql> select size, from_unixtime(ctime) as ctime, from_unixtime(mtime) as mtime, fname from 110303_work_data where fname like '%hg18_gatkorder.fa';
+
+; who used the most storage in the last N days;
+ select UID.GCOS, 110408_work_data.uid, count(*) as cnt, sum(size) as bytes from 110408_work_data, UID where ctime > UNIX_TIMESTAMP('2011-04-06') AND UID.uid = 110408_work_data.uid group by uid ORDER BY bytes DESC;
+
+select table_name, walk_start, state, file_cnt from scan where walk_start > '2011-07-27';
+
+; select the last date from a log file for each host
+select name as N, max(datetime) as LAST from events_blades group by N;
+ set password for guest = password('fsguest');
+rename user guest to fsguest;
+
+ alter table CTC_project add INDEX inode (inode);
+
+; How do I see if my database has any indexes on it?
+show index from UID;
+
+grant all on fsdata.* to fsuser@'%';
+
+
+insert into blades set reported_name='wphpc05', derived_name='wphpc05', reported_memory=132367724 ,osv='sles10',qsoft='pbs';
+
+CREATE TABLE IPADDRESSES(
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ipaddress BIGINT UNSIGNED,
+  PRIMARY KEY(id, ipaddress)
+) ENGINE=MYISAM
+PARTITION BY HASH(ipaddress)
+PARTITIONS 20;
